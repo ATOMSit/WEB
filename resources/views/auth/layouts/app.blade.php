@@ -78,6 +78,11 @@
             <footer class="page-copyright">
                 <p>ATOMSit</p>
                 <p>© 2019 All RIGHT RESERVED.</p>
+                <div class="social">
+                    <a class="btn btn-icon btn-round social-linkedin mx-5" href="{{route('login.provider',['provider'=>'linkedin'])}}">
+                        <i class="icon bd-linkedin" aria-hidden="true"></i>
+                    </a>
+                </div>
             </footer>
         </div>
     </div>

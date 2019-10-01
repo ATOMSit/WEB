@@ -16,10 +16,13 @@ Route::get('/', function () {
 });
 
 Auth::routes(['verify' => true]);
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')
+    ->name('login.provider');
+Route::get('{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('administration')->as('admins.')->middleware(['auth', 'verified'])->group(function () {
+Route::prefix('administration')->as('admins.')->middleware(['auth'])->group(function () {
     Route::prefix('users')->as('users.')->group(function () {
         Route::get('show/{user}', 'UserController@show')
             ->name('show');
