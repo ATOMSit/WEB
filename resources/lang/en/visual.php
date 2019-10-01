@@ -2,7 +2,8 @@
 
 return [
     'global' => [
-        'app' => "ATOMSit"
+        'app' => "ATOMSit",
+        'logout' => "Deconnexion"
     ],
     'login' => [
         'description' => "Créer et administrer votre site internet en toute simplicité avec notre application",
