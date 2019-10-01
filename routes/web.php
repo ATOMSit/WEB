@@ -19,9 +19,13 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
-
-Route::get('edit/{user}', function (\App\User $user) {
-    $user->update([
-        'first_name' => "Léa"
-    ]);
+Route::prefix('administration')->as('admins.')->middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('users')->as('users.')->group(function () {
+        Route::get('show/{user}', 'UserController@show')
+            ->name('show');
+        Route::get('edit/{user}', 'UserController@edit')
+            ->name('edit');
+        Route::put('update/{user}', 'UserController@update')
+            ->name('update');
+    });
 });
