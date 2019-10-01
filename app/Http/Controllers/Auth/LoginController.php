@@ -47,7 +47,12 @@ class LoginController extends Controller
      */
     public function redirectToProvider($provider)
     {
-        return Socialite::driver($provider)->scopes(['r_basicprofile', 'r_emailaddress'])->redirect();
+        if ($provider === 'google') {
+            return Socialite::driver($provider)->scopes(['openid', 'profile', 'email', \Google_Service_People::CONTACTS_READONLY])->redirect();
+
+        } else {
+            return Socialite::driver($provider)->scopes(['r_basicprofile', 'r_emailaddress'])->redirect();
+        }
     }
 
     /**
@@ -75,6 +80,17 @@ class LoginController extends Controller
         $authUser = User::where('provider_id', $user->id)->first();
         if ($authUser) {
             return $authUser;
+        }
+        if ($provider === 'google') {
+            $user = new User([
+                'first_name' => $user['user']['given_name'],
+                'last_name' => $user['user']['family_name'],
+                'email' => $user['email'],
+                'provider' => $provider,
+                'provider_id' => $user->id
+            ]);
+            $user->save();
+            return $user;
         }
         return User::create([
             'last_name' => $user->last_name,

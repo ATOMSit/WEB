@@ -35,4 +35,16 @@ return [
         'client_secret' => env('LINKEDIN_CLIENT_SECRET'), // Your LinkedIn Client Secret
         'redirect' => env('LINKEDIN_CALLBACK_URL'),       // Your LinkedIn Callback URL
     ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_CALLBACK_URL'),
+    ],
+
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => env('FACEBOOK_CALLBACK_URL'),
+    ],
 ];

@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
+        "google/apiclient": "^2.4",
         "kris/laravel-form-builder": "^1.6",
         "laravel/framework": "^6.0",
         "laravel/socialite": "^4.2",

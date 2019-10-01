@@ -79,8 +79,17 @@
                 <p>ATOMSit</p>
                 <p>© 2019 All RIGHT RESERVED.</p>
                 <div class="social">
-                    <a class="btn btn-icon btn-round social-linkedin mx-5" href="{{route('login.provider',['provider'=>'linkedin'])}}">
+                    <a class="btn btn-icon btn-round social-linkedin mx-5" href="{{route('oauth.login',['provider'=>'linkedin'])}}">
                         <i class="icon bd-linkedin" aria-hidden="true"></i>
+                    </a>
+                    <a class="btn btn-icon btn-round social-google-plus mx-5" href="{{route('oauth.login',['provider'=>'google'])}}">
+                        <i class="icon bd-google-plus" aria-hidden="true"></i>
+                    </a>
+                    <a class="btn btn-icon btn-round social-facebook mx-5" href="{{route('oauth.login',['provider'=>'facebook'])}}">
+                        <i class="icon bd-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a class="btn btn-icon btn-round social-github mx-5" href="{{route('oauth.login',['provider'=>'facebook'])}}">
+                        <i class="icon bd-github" aria-hidden="true"></i>
                     </a>
                 </div>
             </footer>
