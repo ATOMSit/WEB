@@ -30,7 +30,8 @@
                             Options
                         </button>
                         <div class="dropdown-menu" aria-labelledby="userConnect" role="menu">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" role="menuitem">
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                               role="menuitem">
                                 Deconnexion
                             </a>
                         </div>
@@ -151,153 +152,22 @@
 
         <!-- Right Column -->
         <div class="col-lg-6 col-xl-3 ">
-            <div class="card user-visitors">
-                <div class="card-header card-header-transparent p-20">
-                    <h4 class="card-title mb-0">Visitors</h4>
-                </div>
-                <div class="card-block">
-                    <ul class="list-group list-group-full">
-                        <li class="list-group-item">
-                            <div class="media">
-                                <div class="pr-20">
-                                    <a class="avatar avatar-online" href="javascript:void(0)">
-                                        <img class="img-fluid" src="{{asset('admin/portraits/11.jpg')}}">
-                                        <i></i>
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <h5 class="mt-0 mb-5 hover">Dan Cederholm
-                                    </h5>
-                                    <small>Co-founder of Company</small>
-                                </div>
-                                <div class="pt-10 pb-10 p-0">
-                                    <button class="btn btn-icon btn-primary btn-outline btn-round btn-xs" type="button"
-                                            name="button">
-                                        <i class="icon icon-xs wb-plus mr-0"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="media">
-                                <div class="pr-20">
-                                    <a class="avatar" href="javascript:void(0)">
-                                        <img class="img-fluid" src="{{asset('admin/portraits/12.jpg')}}">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <h5 class="mt-0 mb-5 hover">Oykun Yilmaz</h5>
-                                    <small>Co-founder of Company</small>
-                                </div>
-                                <div class="pt-10 pb-10 p-0">
-                                    <button class="btn btn-icon btn-primary btn-outline btn-round btn-xs" type="button"
-                                            name="button">
-                                        <i class="icon icon-xs wb-plus mr-0"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="media">
-                                <div class="pr-20">
-                                    <a class="avatar" href="javascript:void(0)">
-                                        <img class="img-fluid" src="{{asset('admin/portraits/10.jpg')}}">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <h5 class="mt-0 mb-5 hover">Caleb Richards</h5>
-                                    <small>Co-founder of Company</small>
-                                </div>
-                                <div class="pt-10 pb-10 p-0">
-                                    <button class="btn btn-icon btn-primary btn-outline btn-round btn-xs" type="button"
-                                            name="button">
-                                        <i class="icon icon-xs wb-plus mr-0"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="media">
-                                <div class="pr-20">
-                                    <a class="avatar" href="javascript:void(0)">
-                                        <img class="img-fluid" src="{{asset('admin/portraits/1.jpg')}}">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <h5 class="mt-0 mb-5 hover">June Lane</h5>
-                                    <small>Co-founder of Company</small>
-                                </div>
-                                <div class="pt-10 pb-10 p-0">
-                                    <button class="btn btn-icon btn-primary btn-outline btn-round btn-xs" type="button"
-                                            name="button">
-                                        <i class="icon icon-xs wb-plus mr-0"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="text-center">
-                        <button class="btn btn-round btn-outline btn-primary" type="button" name="button">See all
-                            <span>(19)</span>
-                        </button>
+            <!-- Panel Pie -->
+            <div class="card card-shadow" id="chartPie">
+                <div class="card-block p-0 p-30 h-full">
+                    <div class="font-size-20 text-center">
+                        Réseaux sociaux
+                    </div>
+                    <div class="row no-space mt-40">
+                        @if($user->socialsAccounts->count() === 0)
+                            <i class="icon wb-close mx-auto d-block" style="font-size: 124px; color: rgba(245, 0, 0, 0.76)"></i>
+                        @else
+                            <i class="icon wb-check-circle mx-auto d-blodck" style="font-size: 124px; color: rgba(21, 209, 0, 0.79)"></i>
+                        @endif
                     </div>
                 </div>
             </div>
-            <div class="card user-may-know">
-                <div class="card-header card-header-transparent p-20">
-                    <h4 class="card-title mb-5">People you may know</h4>
-                    <ol class="breadcrumb mb-0 p-0">
-                        <li class="breadcrumb-item">
-                            <a href="#">Jackie Tran Anh</a>
-                        </li>
-                        <li class="breadcrumb-item active">
-                            Designer
-                        </li>
-                    </ol>
-                </div>
-                <div class="card-block">
-                    <div class="avatar avatar-online avatar-lg m-5">
-                        <img src="{{asset('admin/portraits/2.jpg')}}" alt=""/>
-                        <i></i>
-                    </div>
-                    <div class="avatar avatar-off avatar-lg m-5">
-                        <img src="{{asset('admin/portraits/3.jpg')}}" alt=""/>
-                        <i></i>
-                    </div>
-                    <div class="avatar avatar-busy avatar-lg m-5">
-                        <img src="{{asset('admin/portraits/4.jpg')}}" alt=""/>
-                        <i></i>
-                    </div>
-                    <div class="avatar avatar-away avatar-lg m-5">
-                        <img src="{{asset('admin/portraits/1.jpg')}}" alt=""/>
-                        <i></i>
-                    </div>
-                    <div class="avatar avatar-online avatar-lg m-5">
-                        <img src="{{asset('admin/portraits/5.jpg')}}" alt=""/>
-                        <i></i>
-                    </div>
-                    <div class="avatar avatar-away avatar-lg m-5">
-                        <img src="{{asset('admin/portraits/1.jpg')}}" alt=""/>
-                        <i></i>
-                    </div>
-                    <div class="avatar avatar-away avatar-lg m-5">
-                        <img src="{{asset('admin/portraits/1.jpg')}}" alt=""/>
-                        <i></i>
-                    </div>
-                    <div class="avatar avatar-away avatar-lg m-5">
-                        <img src="{{asset('admin/portraits/1.jpg')}}" alt=""/>
-                        <i></i>
-                    </div>
-                </div>
-                <div class="card-block">
-                    <div class="input-search">
-                        <button class="input-search-btn" type="button" name="button">
-                            <i class="icon wb-search" aria-hidden="true"></i>
-                        </button>
-                        <input class="form-control" type="text" name="search" placeholder="Search...">
-                    </div>
-                </div>
-            </div>
+            <!-- End Panel Pie -->
         </div>
         <!-- End Right Column -->
     </div>

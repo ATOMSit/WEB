@@ -57,7 +57,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show')->with('user',$user);
+        return view('users.show')->with('user', $user);
     }
 
     /**
@@ -69,6 +69,7 @@ class UserController extends Controller
     public function edit(FormBuilder $formBuilder, User $user)
     {
         try {
+            $user = User::query()->with('id', $user->id)->with('socialsAccounts')->findOrFail()->get();
             $form = $formBuilder->create(UserForm::class);
             return view('users.edit')
                 ->with('form', $form)
