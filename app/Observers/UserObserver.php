@@ -16,7 +16,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        Mail::to('administrateur@chezmoi.com')->queue(new UserMail());
+
     }
 
     /**

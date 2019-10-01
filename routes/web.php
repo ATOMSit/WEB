@@ -16,10 +16,16 @@ Route::get('/', function () {
 });
 
 Auth::routes(['verify' => true]);
+Route::group(['prefix' => 'oauth', 'as' => 'oauth.', 'middleware' => ['guest', 'throttle']], function () {
+    Route::get('/{provider}', 'Auth\SocialiteController@redirectToProvider')->name('login')
+        ->where('provider', 'google|linkedin|facebook|github');
+    Route::get('/{provider}/callback', 'Auth\SocialiteController@handleProviderCallback')
+        ->where('provider', 'google|linkedin|facebook|github');
+});
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('administration')->as('admins.')->middleware(['auth', 'verified'])->group(function () {
+Route::prefix('administration')->as('admins.')->middleware(['auth'])->group(function () {
     Route::prefix('users')->as('users.')->group(function () {
         Route::get('show/{user}', 'UserController@show')
             ->name('show');
