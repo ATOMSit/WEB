@@ -18,9 +18,9 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 Route::group(['prefix' => 'oauth', 'as' => 'oauth.', 'middleware' => ['guest', 'throttle']], function () {
     Route::get('/{provider}', 'Auth\SocialiteController@redirectToProvider')->name('login')
-        ->where('provider', 'google|linkedin|facebook');
+        ->where('provider', 'google|linkedin|facebook|github');
     Route::get('/{provider}/callback', 'Auth\SocialiteController@handleProviderCallback')
-        ->where('provider', 'google|linkedin|facebook');
+        ->where('provider', 'google|linkedin|facebook|github');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
