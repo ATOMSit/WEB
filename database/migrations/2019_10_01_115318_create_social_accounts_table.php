@@ -17,9 +17,10 @@ class CreateSocialAccountsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('provider_user_id');
-            $table->string('provider');
-            $table->unique([ 'provider_user_id','provider' ]);
+            $table->string('provider_user_id')
+                ->unique();
+            $table->string('provider')
+                ->unique();
             $table->timestamps();
         });
     }
