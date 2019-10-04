@@ -18,9 +18,9 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 Route::group(['prefix' => 'oauth', 'as' => 'oauth.', 'middleware' => ['guest', 'throttle']], function () {
     Route::get('/{provider}', 'Auth\SocialiteController@redirectToProvider')->name('login')
-        ->where('provider', 'google|linkedin|facebook|github');
+        ->where('provider', 'google|linkedin|facebook');
     Route::get('/{provider}/callback', 'Auth\SocialiteController@handleProviderCallback')
-        ->where('provider', 'google|linkedin|facebook|github');
+        ->where('provider', 'google|linkedin|facebook');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -33,5 +33,7 @@ Route::prefix('administration')->as('admins.')->middleware(['auth'])->group(func
             ->name('edit');
         Route::put('update/{user}', 'UserController@update')
             ->name('update');
+        Route::put('password/{user}', 'PasswordController@update')
+            ->name('password.update');
     });
 });

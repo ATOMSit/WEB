@@ -88,9 +88,6 @@
                     <a class="btn btn-icon btn-round social-facebook mx-5" href="{{route('oauth.login',['provider'=>'facebook'])}}">
                         <i class="icon bd-facebook" aria-hidden="true"></i>
                     </a>
-                    <a class="btn btn-icon btn-round social-github mx-5" href="{{route('oauth.login',['provider'=>'github'])}}">
-                        <i class="icon bd-github" aria-hidden="true"></i>
-                    </a>
                 </div>
             </footer>
         </div>

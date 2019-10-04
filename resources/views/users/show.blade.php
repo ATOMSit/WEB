@@ -9,9 +9,9 @@
 @endpush
 
 @section('content')
-    <div class="row">
+    <div class="row align-items-start">
         <!-- Left Column -->
-        <div class="col-lg-6 col-xl-3 pull-xl-6">
+        <div class="col-lg-6 col-xl-4 pull-xl-6">
             <div class="user-info card card-shadow text-center">
                 <div class="user-base card-block">
                     <a class="avatar img-bordered avatar-100" href="javascript:void(0)">
@@ -152,7 +152,6 @@
 
         <!-- Right Column -->
         <div class="col-lg-6 col-xl-3 ">
-            <!-- Panel Pie -->
             <div class="card card-shadow" id="chartPie">
                 <div class="card-block p-0 p-30 h-full">
                     <div class="font-size-20 text-center">
@@ -164,6 +163,63 @@
                         @else
                             <i class="icon wb-check-circle mx-auto d-blodck" style="font-size: 124px; color: rgba(21, 209, 0, 0.79)"></i>
                         @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-5">
+            <!-- Panel Pie -->
+            <div class="card card-shadow" id="chartPie">
+                <div class="card-block p-0 p-30 h-full">
+                    <div class="font-size-20 text-center">
+                        SECURITE
+                    </div>
+                    <div class="row no-space mt-40">
+                        @if($user->password_updated === null)
+                            @if(\Carbon\Carbon::make($user->created_at)->addWeeks(3) < \Carbon\Carbon::today())
+                                <div class="alert alert-alt alert-danger alert-dismissible" role="alert">
+                                    Votre mot de passe a plus de 3 semaines. Il est fortement conseullez de le changer pour plus de sécurité.
+                                </div>
+                            @elseif(\Carbon\Carbon::make($user->created_at)->addWeeks(2) < \Carbon\Carbon::today())
+                                <div class="alert alert-alt alert-warning alert-dismissible" role="alert">
+                                    Votre mot de passe a plus de 2 semaines. Il est fortement conseillez de le changer très rapidement pour plus de sécurité.
+                                </div>
+                            @else
+                                <div class="alert alert-alt alert-primary alert-dismissible" role="alert">
+                                    Votre mot de passe est à jour. Veuillez le changer régulièrement pour plus de sécurité.
+                                </div>
+                            @endif
+                        @else
+                        @endif
+                        <button type="button" data-target="#examplePositionCenter" data-toggle="modal" class="btn btn-raised btn-primary mx-auto d-block">
+                            Mettre à jour mon mot de passe
+                        </button>
+                        <div class="modal fade" id="examplePositionCenter" aria-hidden="true" aria-labelledby="examplePositionCenter"
+                             role="dialog" tabindex="-1">
+                            <div class="modal-dialog modal-simple modal-center">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <h4 class="modal-title">
+                                            Modifier mon mot de passe
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                            Fermer
+                                        </button>
+                                        <button type="button" class="btn btn-primary">
+                                            Sauvegarder
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

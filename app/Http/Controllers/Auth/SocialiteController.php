@@ -17,6 +17,23 @@ class SocialiteController extends Controller
 {
     use RedirectsUsers;
 
+    protected $scopes = [
+        'facebook' => [
+            'name',
+            'first_name',
+            'last_name',
+            'email',
+            'gender',
+            'verified'
+        ],
+        'linkedin' => [
+            'r_basicprofile'
+        ],
+        'google' => [
+
+        ]
+    ];
+
     /**
      * Redirect the user to the Provider authentication page.
      *
@@ -39,7 +56,11 @@ class SocialiteController extends Controller
     public function handleProviderCallback($provider)
     {
         try {
-            $providerUser = Socialite::driver($provider)->user();
+            if ($provider === 'facebook') {
+                $providerUser = Socialite::driver($provider)->fields($this->scopes[$provider])->user();
+            } else {
+                $providerUser = Socialite::driver($provider)->scopes($this->scopes[$provider])->user();
+            }
         } catch (\Throwable | \Exception $e) {
             // Send actual error message in development
             if (config('app.debug')) {
@@ -70,22 +91,34 @@ class SocialiteController extends Controller
      */
     protected function findOrCreateUser($providerName, $providerUser)
     {
-        $social = SocialAccount::firstOrNew([
+        $social = SocialAccount::query()->firstOrNew([
             'provider_user_id' => $providerUser->getId(),
             'provider' => $providerName
         ]);
         if ($social->exists) {
             return $social->user;
         }
-        $user = User::firstOrNew([
+        $user = User::query()->firstOrNew([
             'email' => $providerUser->getEmail()
         ]);
+        return var_dump($providerUser);
         if (!$user->exists) {
-            $user->first_name = $providerUser->getName();
-            $user->last_name = $providerUser->getName();
-            $user->password = Hash::make(Str::random(30));
-            $user->save();
-            event(new RegisteredEvent($user));
+            if ($providerName === 'facebook') {
+                $user->first_name = $providerUser->user['first_name'];
+                $user->last_name = $providerUser->user['last_name'];
+                $user->password = Hash::make(Str::random(30));
+                $user->save();
+            } elseif ($providerName === 'google') {
+                $user->first_name = $providerUser->user['given_name'];
+                $user->last_name = $providerUser->user['family_name'];
+                $user->password = Hash::make(Str::random(30));
+                $user->save();
+            } else {
+                $user->first_name = $providerUser->first_name;
+                $user->last_name = $providerUser->last_name;
+                $user->password = Hash::make(Str::random(30));
+                $user->save();
+            }
         }
         $social->user()->associate($user);
         $social->save();
