@@ -160,29 +160,6 @@
                     <div class="row no-space mt-40">
                         @if($user->socialsAccounts->count() === 0)
                             <i class="icon wb-close mx-auto d-block" style="font-size: 124px; color: rgba(245, 0, 0, 0.76)"></i>
-                            <ul class="list-group list-group-full">
-                                <li class="list-group-item">
-                                    <span class="badge badge-pill badge-success">6</span>
-                                    Cras justo odio
-                                </li>
-                                <li class="list-group-item">
-                                    Dapibus ac facilisis in
-                                </li>
-                                <li class="list-group-item">
-                                    <span class="badge badge-pill badge-danger">3</span>
-                                    Morbi leo risus
-                                </li>
-                                <li class="list-group-item list-group-item-action active">
-                                    <span class="badge badge-pill badge-info">10</span>
-                                    Porta ac consectetur ac
-                                </li>
-                                <li class="list-group-item">
-                                    Vestibulum at eros
-                                </li>
-                                <li class="list-group-item">
-                                    Ibus ac facilis
-                                </li>
-                            </ul>
                         @else
                             <i class="icon wb-check-circle mx-auto d-blodck" style="font-size: 124px; color: rgba(21, 209, 0, 0.79)"></i>
                         @endif
@@ -217,38 +194,30 @@
                         <button type="button" data-target="#examplePositionCenter" data-toggle="modal" class="btn btn-raised btn-primary mx-auto d-block">
                             Mettre à jour mon mot de passe
                         </button>
-                        <div class="modal fade" id="examplePositionCenter" aria-hidden="true" aria-labelledby="examplePositionCenter"
-                             role="dialog" tabindex="-1">
-                            <div class="modal-dialog modal-simple modal-center">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <h4 class="modal-title">
-                                            Modifier mon mot de passe
-                                        </h4>
-                                    </div>
-                                    <div class="modal-body">
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                                            Fermer
-                                        </button>
-                                        <button type="button" class="btn btn-primary">
-                                            Sauvegarder
-                                        </button>
-                                    </div>
-                                </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-shadow" id="chartPie">
+                <div class="card-block p-0 p-30 h-full">
+                    <div class="font-size-20 text-center">
+                        PAIEMENT
+                    </div>
+                    <div class="row no-space mt-40">
+                        @if($user->stripe_id === null)
+                            <div class="alert alert-alt alert-warning alert-dismissible" role="alert">
+                                Votre mot de passe a plus de 2 semaines. Il est fortement conseillez de le changer très rapidement pour plus de sécurité.
                             </div>
-                        </div>
+                            <button type="button" onclick="window.location.href='{{route('admins.users.payment.create')}}'" class="btn btn-raised btn-primary mx-auto d-block">
+                                Ajouter un moyen de paiement
+                            </button>
+                        @else
+                            Déjà un moyen de paiement
+                        @endif
                     </div>
                 </div>
             </div>
             <!-- End Panel Pie -->
         </div>
-        <!-- End Right Column -->
     </div>
 
 @endsection

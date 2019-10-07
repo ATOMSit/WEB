@@ -35,5 +35,8 @@ Route::prefix('administration')->as('admins.')->middleware(['auth'])->group(func
             ->name('update');
         Route::put('password/{user}', 'PasswordController@update')
             ->name('password.update');
+
+        Route::get('credit-card', 'StripeController@create')
+            ->name('payment.create');
     });
 });

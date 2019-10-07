@@ -29,7 +29,11 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        return true;
+        if ($user->is($model)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
