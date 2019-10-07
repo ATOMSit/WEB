@@ -160,6 +160,29 @@
                     <div class="row no-space mt-40">
                         @if($user->socialsAccounts->count() === 0)
                             <i class="icon wb-close mx-auto d-block" style="font-size: 124px; color: rgba(245, 0, 0, 0.76)"></i>
+                            <ul class="list-group list-group-full">
+                                <li class="list-group-item">
+                                    <span class="badge badge-pill badge-success">6</span>
+                                    Cras justo odio
+                                </li>
+                                <li class="list-group-item">
+                                    Dapibus ac facilisis in
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="badge badge-pill badge-danger">3</span>
+                                    Morbi leo risus
+                                </li>
+                                <li class="list-group-item list-group-item-action active">
+                                    <span class="badge badge-pill badge-info">10</span>
+                                    Porta ac consectetur ac
+                                </li>
+                                <li class="list-group-item">
+                                    Vestibulum at eros
+                                </li>
+                                <li class="list-group-item">
+                                    Ibus ac facilis
+                                </li>
+                            </ul>
                         @else
                             <i class="icon wb-check-circle mx-auto d-blodck" style="font-size: 124px; color: rgba(21, 209, 0, 0.79)"></i>
                         @endif

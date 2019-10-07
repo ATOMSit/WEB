@@ -101,7 +101,6 @@ class SocialiteController extends Controller
         $user = User::query()->firstOrNew([
             'email' => $providerUser->getEmail()
         ]);
-        return var_dump($providerUser);
         if (!$user->exists) {
             if ($providerName === 'facebook') {
                 $user->first_name = $providerUser->user['first_name'];
