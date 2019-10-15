@@ -47,7 +47,7 @@
                         </span>
                     </a>
                     <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" role="menuitem">
                             <i class="icon wb-power" aria-hidden="true"></i>
                             @lang('visual.global.logout')
                         </a>

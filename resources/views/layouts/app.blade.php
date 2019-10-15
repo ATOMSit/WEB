@@ -7,7 +7,9 @@
     <meta name="description" content="bootstrap admin template">
     <meta name="author" content="">
 
-    <title>Dashboard | Remark Admin Template</title>
+    <title>
+        ATOMSit | @yield('title')
+    </title>
 
     <link rel="apple-touch-icon" href="{{asset('admin/assets/images/apple-touch-icon.png')}}">
     <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}">
@@ -27,11 +29,11 @@
     <link rel="stylesheet" href="{{asset('admin/vendor/chartist/chartist.css')}}">
     <link rel="stylesheet" href="{{asset('admin/vendor/jvectormap/jquery-jvectormap.css')}}">
     <link rel="stylesheet" href="{{asset('admin/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css')}}">
-@stack('styles')
+    @stack('styles')
 
-    <!-- Fonts -->
     <link rel="stylesheet" href="{{asset('admin/fonts/weather-icons/weather-icons.css')}}">
     <link rel="stylesheet" href="{{asset('admin/fonts/web-icons/web-icons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/fonts/font-awesome/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/fonts/brand-icons/brand-icons.min.css')}}">
     <link rel='stylesheet' href="{{asset('admin/fonts/font.css')}}">
 
@@ -61,8 +63,10 @@
 
 <!-- Page -->
 <div class="page">
+    @yield('breadcrumbs')
     <div class="page-content container-fluid">
-            @yield('content')
+        @include('layouts.messages')
+        @yield('content')
     </div>
 </div>
 <!-- End Page -->

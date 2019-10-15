@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('title')
+    Profil d'utilisateur
+@endsection
+
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('admins.users.show',$user) }}
+@endsection
+
 @push('styles')
     <link rel="stylesheet" href="{{asset('admin/assets/examples/css/pages/profile-v2.css')}}">
 @endpush

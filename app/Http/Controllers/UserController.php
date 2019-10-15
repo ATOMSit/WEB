@@ -69,8 +69,13 @@ class UserController extends Controller
     public function edit(FormBuilder $formBuilder, User $user)
     {
         try {
-            $user = User::query()->with('id', $user->id)->with('socialsAccounts')->findOrFail()->get();
-            $form = $formBuilder->create(UserForm::class);
+            $url = route('admins.users.update', ['user' => $user]);
+            $user = User::query()->where('id', $user->id)->firstOrFail()->first();
+            $form = $formBuilder->create(UserForm::class, [
+                'method' => 'PUT',
+                'url' => $url,
+                'model' => $user
+            ]);
             return view('users.edit')
                 ->with('form', $form)
                 ->with('user', $user);
@@ -88,7 +93,17 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        try {
+            $user = User::query()->where('id', $user->id)->firstOrFail()->first();
+            $user->update([
+                'first_name' => $request->get('first_name'),
+                'last_name' => $request->get('last_name'),
+                'email' => $request->get('email')
+            ]);
+            return back();
+        } catch (\Exception $exception) {
+
+        }
     }
 
     /**

@@ -37,6 +37,59 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="site-menu-item has-sub {{Request::routeIs('admins.blogs.posts.*') ? 'active' : '' }}">
+                <a href="javascript:void(0)">
+                    <i class="site-menu-icon wb-paperclip" aria-hidden="true"></i>
+                    <span class="site-menu-title">
+                        BLOG
+                    </span>
+                </a>
+                <ul class="site-menu-sub">
+                    <li class="site-menu-item {{Request::routeIs('admins.blogs.posts.create') ? 'active' : '' }}">
+                        <a class="animsition-link" href="{{route('admins.blogs.posts.create')}}">
+                            <span class="site-menu-title">
+                                Ajouter un article
+                            </span>
+                        </a>
+                    </li>
+                    <li class="site-menu-item {{Request::routeIs('admins.blogs.posts.index') ? 'active' : '' }}">
+                        <a class="animsition-link" href="{{route('admins.blogs.posts.index')}}">
+                            <span class="site-menu-title">
+                                Listes des articles
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="site-menu-item has-sub">
+                <a href="javascript:void(0)">
+                    <i class="site-menu-icon fa fa-facebook" aria-hidden="true"></i>
+                    <span class="site-menu-title">
+                        FACEBOOK
+                    </span>
+                </a>
+                <ul class="site-menu-sub">
+                    <li class="site-menu-item">
+                        <a class="animsition-link" href="{{route('admins.facebooks.pages.create')}}">
+                            <span class="site-menu-title">
+                                Ajouter / Supprimer une page
+                            </span>
+                        </a>
+                    </li>
+                    @foreach(\Modules\Facebook\Entities\Page::all() as $page)
+                        <li class="site-menu-item {{Request::routeIs('admins.blogs.posts.create') ? 'active' : '' }}">
+                            <a class="animsition-link" href="{{route('admins.facebooks.pages.show',['id'=>$page->id])}}">
+                            <span class="site-menu-title">
+                                {{$page->facebook_name}}
+                            </span>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </li>
+
         </ul>
     </div>
 </div>
