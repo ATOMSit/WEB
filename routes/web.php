@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return \Laravel\Socialite\Facades\Socialite::
+    with('facebook')
+        ->scopes(['manage_pages', 'publish_pages'])
+        ->redirect();
 });
 
 Auth::routes(['verify' => true]);
